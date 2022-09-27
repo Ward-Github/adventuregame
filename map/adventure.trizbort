@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<trizbort version="1.7.4.1">
+	<info />
+	<map>
+		<room id="1" name="Begin" subtitle="Begin adventure game" x="-192" y="192" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="yes" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0" />
+		<room id="2" name="Cave" subtitle="" x="-416" y="0" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="yes" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0">
+			<objects>Find wood shield</objects>
+		</room>
+		<room id="8" name="Small house" subtitle="" x="32" y="0" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="yes" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0">
+			<objects>Find Wood sword in kist. Gesloten met code. Zin maken met bepaalde woorden Hoofdletter. Dit is de code</objects>
+		</room>
+		<room id="10" name="Out the cave" subtitle="" x="-416" y="-128" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="yes" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0" />
+		<room id="12" name="Dragon fight" subtitle="" x="-192" y="-128" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="yes" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0">
+			<objects>Need Water to start fight</objects>
+		</room>
+		<line id="13" name="" description="" color="#FF0000">
+			<dock index="0" id="10" port="e" />
+			<dock index="1" id="12" port="w" />
+		</line>
+		<line id="14" name="" description="">
+			<dock index="0" id="12" port="e" />
+			<point index="1" x="32" y="-96" />
+		</line>
+		<room id="15" name="Mountain Path" subtitle="" x="32" y="-128" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="yes" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0">
+			<objects>Find dead climber with climbing gear</objects>
+		</room>
+		<room id="16" name="Giant fight" subtitle="" x="-800" y="-128" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="yes" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0">
+			<objects>Gebruik climbing gear om |op de gaint te klimmen en hiermee te kille</objects>
+		</room>
+		<line id="17" name="" description="" color="#FF0000">
+			<dock index="0" id="16" port="e" />
+			<dock index="1" id="10" port="w" />
+		</line>
+		<room id="18" name="Water Well" subtitle="" x="-416" y="-256" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="yes" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0">
+			<objects>Verschillende levers, met goede combinatie well open</objects>
+		</room>
+		<line id="19" name="" description="" color="#00FF00">
+			<dock index="0" id="10" port="n" />
+			<dock index="1" id="18" port="s" />
+		</line>
+		<line id="3" name="" description="" color="#FF0000" midText="Skeleton fight (Need Wooden Sword)">
+			<dock index="0" id="1" port="nw" />
+			<dock index="1" id="2" port="se" />
+		</line>
+		<line id="4" name="" description="" color="#00FF00">
+			<dock index="0" id="1" port="ne" />
+			<dock index="1" id="8" port="sw" />
+		</line>
+		<line id="5" name="" description="" flow="oneWay">
+			<dock index="0" id="2" port="n" />
+			<dock index="1" id="10" port="s" />
+		</line>
+		<line id="6" name="" description="" color="#FF00FF">
+			<dock index="0" id="16" port="n" />
+			<dock index="1" id="7" port="s" />
+		</line>
+		<room id="7" name="House" subtitle="Door keypad" x="-800" y="-352" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="yes" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0">
+			<objects>Je hebt een aantal letters a l l o h en hieruit moet je hallo maken voor de keypad|</objects>
+		</room>
+		<room id="9" name="???d" subtitle="" x="-800" y="-512" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="yes" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0" />
+		<line id="11" name="Climbing gear om naarbovne te komen" description="">
+			<dock index="0" id="7" port="n" />
+			<dock index="1" id="9" port="s" />
+		</line>
+		<room id="20" name="Cliff" subtitle="" x="-992" y="-128" w="96" h="64" region="NoRegion" handDrawn="no" allcornersequal="yes" ellipse="no" roundedCorners="no" octagonal="yes" cornerTopLeft="15" cornerTopRight="15" cornerBottomLeft="15" cornerBottomRight="15" borderstyle="Solid" description="" roomFill="" secondFill="" secondFillLocation="Bottom" roomBorder="" roomLargeText="" roomSubtitleColor="" roomSmallText="" ZOrder="0">
+			<objects>Vind armor</objects>
+		</room>
+		<line id="21" name="" description="">
+			<dock index="0" id="16" port="w" />
+			<dock index="1" id="20" port="e" />
+		</line>
+		<line id="22" name="" description="">
+			<dock index="0" id="20" port="n" />
+			<point index="1" x="-800" y="-288" />
+		</line>
+		<line id="23" name="" description="">
+			<dock index="0" id="7" port="sw" />
+			<dock index="1" id="20" port="n" />
+		</line>
+	</map>
+	<settings>
+		<colors>
+			<canvas>Silver</canvas>
+			<border>MidnightBlue</border>
+			<line>MidnightBlue</line>
+			<selectedLine>Gold</selectedLine>
+			<hoverLine>DarkOrange</hoverLine>
+			<subTitle>MidnightBlue</subTitle>
+			<smallText>MidnightBlue</smallText>
+			<lineText>MidnightBlue</lineText>
+			<grid>#E7E7E7</grid>
+			<startRoom>GreenYellow</startRoom>
+			<endRoom>Red</endRoom>
+		</colors>
+		<regions>
+			<NoRegion Name="NoRegion" TextColor="Blue">White</NoRegion>
+		</regions>
+		<fonts>
+			<room size="13">Arial</room>
+			<object size="11">Arial</object>
+			<subTitle size="9">Arial</subTitle>
+			<line size="9">Arial</line>
+		</fonts>
+		<grid>
+			<snapTo>yes</snapTo>
+			<visible>yes</visible>
+			<showOrigin>yes</showOrigin>
+			<size>32</size>
+		</grid>
+		<lines>
+			<width>2</width>
+			<arrowSize>12</arrowSize>
+			<textOffset>4</textOffset>
+		</lines>
+		<rooms>
+			<darknessStripeSize>24</darknessStripeSize>
+			<objectListOffset>4</objectListOffset>
+			<connectionStalkLength>32</connectionStalkLength>
+			<preferredDistanceBetweenRooms>64</preferredDistanceBetweenRooms>
+			<defaultRoomName>Cave</defaultRoomName>
+			<defaultRoomShape>3</defaultRoomShape>
+		</rooms>
+		<ui>
+			<handleSize>12</handleSize>
+			<snapToElementSize>16</snapToElementSize>
+		</ui>
+		<margins>
+			<documentSpecific>no</documentSpecific>
+			<horizontal>0</horizontal>
+			<vertical>0</vertical>
+			<wrapDashes>no</wrapDashes>
+		</margins>
+		<keypadNavigation>
+			<creationModifier>control</creationModifier>
+			<unexploredModifier>alt</unexploredModifier>
+		</keypadNavigation>
+	</settings>
+</trizbort>
