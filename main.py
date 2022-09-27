@@ -8,8 +8,8 @@ hp = 100
 clear = lambda: os.system('cls')
 
 def died():
-
-    input('Sadly you have not made it to the end. Press enter to try again!')
+    clear()
+    input('Thank you for playing our game! Sadly you have not made it to the end. Press enter to try again! ')
     begin()
 
 def upper_word_puzzle():
@@ -111,6 +111,7 @@ def cave():
             
             else:
                 print("You died. You fought hard, but you didn't have any weapons.")
+                time.sleep(2)
                 died()
         
         elif decision == 'no':
