@@ -1,3 +1,5 @@
+inventory = []
+
 def upper_word_puzzle():
     print("""
     You see a note next to it with the following text:
@@ -12,6 +14,7 @@ def upper_word_puzzle():
         code = input('Code: ')
         if code == real_code:
             print('The kist has opened! You have received a sword')
+            inventory.append('wood_sword')
         else:
             print('The code failed. Maybe something different will work? ')
 
@@ -24,3 +27,5 @@ You enter a small broken down home. It's very dusty and you can barely see. In t
         upper_word_puzzle()
     else:
         print('Leaved huis')
+
+small_house()
