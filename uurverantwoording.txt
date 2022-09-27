@@ -1,7 +1,7 @@
 Ward:
 
-25/09 - 1 uur / Begin gemaakt aan de map
+25/09 - 2 uur / Begin gemaakt aan de map en research gedaan over text based adventure games
 26/09 - 2 uur / Map meer uitgebreidt gemaakt
-27/09 - 3 uur / Gewerkt aan smallwoodhouse.py, tiles.py, upper_word.py, ran_word.py en begonnen aan alles te verwerken in main.py
+27/09 - 3 uur / Gewerkt aan smallwoodhouse.py, tiles.py, ran_word.py en begonnen aan alles te verwerken in main.py
 
 Wais:
