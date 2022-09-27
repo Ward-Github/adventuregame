@@ -1,8 +1,11 @@
 import random
-from colorama import Fore, Back, Style
+from colorama import Fore, Back, Style, init
+import os
+import time
 
 inventory = ['wood_sword']
 hp = 100
+clear = lambda: os.system('cls')
 
 def died():
 
@@ -22,12 +25,13 @@ Nothing Good Ever Comes Of Violence.
     code = None
     while code != real_code:
 
-        code = input('Code: ')
+        code = input('Code: ').lower()
 
         if code == real_code:
+            clear()
             print('\nThe chest has opened! You have received a sword')
             inventory.append('wood_sword')
-            print('\nYou walk back to the beginning to where you woke up with your brand new sword!')
+            print(f'\nYou walk back to the beginning to where you woke up with your brand new {Fore.LIGHTMAGENTA_EX}sword{Fore.WHITE}!')
             begin()
 
         else:
@@ -39,7 +43,7 @@ def small_house():
 You enter a small broken down home. It's very dusty and you can barely see. In the corner u spot an old chest with a lock on it
     """)
 
-    choice = input('Do you want to try to open it or leave the home (open/leave): ')
+    choice = input(f'[{Fore.YELLOW}!{Fore.WHITE}] Do you want to try to open it or leave the home (open/leave): ')
 
     if choice == 'open':
         upper_word_puzzle()
@@ -57,16 +61,18 @@ On your left side there is a cave, Follow the path over the bridge to the cave.
     invalid = True
     while invalid:
 
-        direction = input("[{Fore.YELLOW}!{Fore.WHITE}] What direction would you like to go (right/left): ")
+        direction = input(f"[{Fore.YELLOW}!{Fore.WHITE}] What direction would you like to go (right/left): ")
 
         if direction ==  'left':
             print("\nYou have chose to follow the path to the cave")
             invalid = False
+            clear()
             cave()
 
         elif direction == 'right':
             print("\nYou have chosen the path through the woods to the small house.")
             invalid = False
+            clear()
             small_house()
 
         else:
@@ -96,9 +102,11 @@ def cave():
                     hp = hp - skeleton_dmg
 
                     print(f'[{Fore.GREEN}+{Fore.WHITE}] Skeleton hit for {wood_sword_dmg}')
+                    time.sleep(0.2)
                     print(f'[{Fore.RED}-{Fore.WHITE}] You got hit for {skeleton_dmg}')
 
                 print(f'\n[{Fore.GREEN}!{Fore.WHITE}] You have succesfully killed the skeletons with {Fore.GREEN}{hp}{Fore.WHITE} health left!')
+                print(f'\n[{Fore.GREEN}!{Fore.WHITE}] One of the skeletons had a {Fore.LIGHTMAGENTA_EX}shield{Fore.WHITE} on him. You grab it and put in your bag. +')
                 invalid = False
             
             else:
@@ -112,11 +120,30 @@ def cave():
         else:
             print('Invalid input, try again.')
 
+print(f"""
+
+  ██████  ▄▄▄       ██▀███   ▄▄▄      ▓█████▄  ▒█████   ███▄ ▄███▓ ██▓ ███▄    █ 
+▒██    ▒ ▒████▄    ▓██ ▒ ██▒▒████▄    ▒██▀ ██▌▒██▒  ██▒▓██▒▀█▀ ██▒▓██▒ ██ ▀█   █ 
+░ ▓██▄   ▒██  ▀█▄  ▓██ ░▄█ ▒▒██  ▀█▄  ░██   █▌▒██░  ██▒▓██    ▓██░▒██▒▓██  ▀█ ██▒
+  ▒   ██▒░██▄▄▄▄██ ▒██▀▀█▄  ░██▄▄▄▄██ ░▓█▄   ▌▒██   ██░▒██    ▒██ ░██░▓██▒  ▐▌██▒
+▒██████▒▒ ▓█   ▓██▒░██▓ ▒██▒ ▓█   ▓██▒░▒████▓ ░ ████▓▒░▒██▒   ░██▒░██░▒██░   ▓██░
+▒ ▒▓▒ ▒ ░ ▒▒   ▓▒█░░ ▒▓ ░▒▓░ ▒▒   ▓▒█░ ▒▒▓  ▒ ░ ▒░▒░▒░ ░ ▒░   ░  ░░▓  ░ ▒░   ▒ ▒ 
+░ ░▒  ░ ░  ▒   ▒▒ ░  ░▒ ░ ▒░  ▒   ▒▒ ░ ░ ▒  ▒   ░ ▒ ▒░ ░  ░      ░ ▒ ░░ ░░   ░ ▒░
+░  ░  ░    ░   ▒     ░░   ░   ░   ▒    ░ ░  ░ ░ ░ ░ ▒  ░      ░    ▒ ░   ░   ░ ░ 
+      ░        ░  ░   ░           ░  ░   ░        ░ ░         ░    ░           ░ 
+                                       ░                                         
+
+[{Fore.YELLOW}!{Fore.WHITE}] Welcome to Saradomin
+
+""")
+input(f'[{Fore.YELLOW}/{Fore.WHITE}] Press enter to start...')
+
+clear()
+
 print('''
 You’ve awakened traveller,
 welcome to mountain Karamja. 
 This mountain has been terrorized by the Demi-human called Saradomin,
-It is your task to free us from his wrath.
-    ''')
+It is your task to free us from his wrath.''')
 
 begin()
