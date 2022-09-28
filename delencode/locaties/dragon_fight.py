@@ -6,6 +6,7 @@ inventory = []
 hp = 49
 
 def healthbar(hp):
+    #healthbar door loop met gedeeld door 10
     if hp > 60 and hp <= 80:
         return f'|{Fore.GREEN}xxxx{Fore.RED}-{Fore.WHITE}|'
     elif hp > 80:
