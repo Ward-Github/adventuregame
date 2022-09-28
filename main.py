@@ -106,8 +106,11 @@ def cave():
                     print(f'[{Fore.RED}-{Fore.WHITE}] You got hit for {skeleton_dmg}')
 
                 print(f'\n[{Fore.GREEN}!{Fore.WHITE}] You have succesfully killed the skeletons with {Fore.GREEN}{hp}{Fore.WHITE} health left!')
-                print(f'\n[{Fore.GREEN}!{Fore.WHITE}] One of the skeletons had a {Fore.LIGHTMAGENTA_EX}shield{Fore.WHITE} on him. You grab it and put in your bag. +')
+                time.sleep(0.2)
+                print(f'\n[{Fore.GREEN}!{Fore.WHITE}] One of the skeletons had a {Fore.LIGHTMAGENTA_EX}shield{Fore.WHITE} on him. You grab it and put in your bag. ')
+                time.sleep(1)
                 invalid = False
+                outside_cave()
             
             else:
                 print("You died. You fought hard, but you didn't have any weapons.")
@@ -120,6 +123,34 @@ def cave():
         
         else:
             print('Invalid input, try again.')
+
+def outside_cave():
+
+    print("""
+You finally made it out of the cave, thinking about what to do next.
+
+On your left you see a giant person. Higher than the biggest tree.
+On your right you see a regular mountain path.
+In front of you you see water well.
+    """)
+
+    invalid = True
+    while invalid:
+        decision = input(f'[{Fore.YELLOW}!{Fore.WHITE}] Where do you want to go (right/left/ahead): ')
+        if decision == 'right':
+            invalid = False
+            dragon_fight()
+
+        elif decision == 'left':
+            invalid = False
+            #giant_fight()
+        
+        elif decision == 'ahead':
+            print('Ff zodat geen error')
+            #water_well()
+        
+        else:
+            print('Invalid input, try again')
 
 print(f"""
 
@@ -137,7 +168,7 @@ print(f"""
 [{Fore.YELLOW}!{Fore.WHITE}] Welcome to Saradomin
 
 """)
-input(f'[{Fore.YELLOW}/{Fore.WHITE}] Press enter to start...')
+input(f"[{Fore.YELLOW}/{Fore.WHITE}] Press enter to start... (If you can't see colors make sure to update your terminal")
 
 clear()
 
