@@ -1,27 +1,40 @@
 from colorama import Fore
 import time
 import random
+import os
 
-inventory = []
-hp = 49
+clear = lambda: os.system('cls')
+inventory = ['water bucket']
+hp = 100
 
 def healthbar(hp):
-    #healthbar door loop met gedeeld door 10
-    if hp > 60 and hp <= 80:
-        return f'|{Fore.GREEN}xxxx{Fore.RED}-{Fore.WHITE}|'
-    elif hp > 80:
-        return f'|{Fore.GREEN}xxxxx|'
-    elif hp <= 60 and hp > 40:
-        return f'|{Fore.GREEN}xxx{Fore.RED}--{Fore.WHITE}|'
-    elif hp <= 40 and hp > 20:
-        return f'|{Fore.GREEN}xx{Fore.RED}---{Fore.WHITE}|'
-    elif hp <= 20 and hp > 0:
-        return f'|{Fore.GREEN}x{Fore.RED}----{Fore.WHITE}|'
-    elif hp <= 0:
-        return f'|{Fore.RED}-----{Fore.WHITE}|'
+    health = hp // 10
+    removed_health = (10 - health)
+    health_bar = f'|{Fore.GREEN}'
+
+    for i in range(health):
+        health_bar += f'x'
+    for i in range(removed_health):
+        health_bar += f'{Fore.RED}x'
+
+    health_bar += f'{Fore.WHITE}|'
+    return health_bar
+
+def healthbar_enemy(enemy_hp, enemy_total_hp):
+    health = enemy_hp // 10
+    enemy_hp_left = enemy_total_hp // 10
+    removed_health = (enemy_hp_left - health)
+    health_bar = f'|{Fore.GREEN}'
+
+    for i in range(health):
+        health_bar += f'x'
+    for i in range(removed_health):
+        health_bar += f'{Fore.RED}x'
+
+    health_bar += f'{Fore.WHITE}|'
+    return health_bar
+
     
-
-
 def dragon_fight():
     global hp
 
@@ -32,12 +45,13 @@ def dragon_fight():
     while invalid:
         if dragon_choice == 'yes':
             invalid = False
-            dragon_hp = 200
+            enemy_hp = 200
+            enemy_total_hp = 200
             print("You look around the bush and you see a fire dragon!")
-            if 'water_bucket' in inventory:
+            if 'water bucket' in inventory:
                 print("You think fast and throw your bucket of water on him.")
 
-                dragon_hp = dragon_hp - 100
+                enemy_hp = enemy_hp - 100
                 print(f"[{Fore.GREEN}+{Fore.WHITE}] -100 HP! His fire went away but he is still moving and angry.")
                 print('You grab your sword and shield and start the fight')
             
@@ -45,17 +59,18 @@ def dragon_fight():
                 print('You grab your sword and shield and start the fight')
 
             died = False
-            while dragon_hp > 0:
+            while enemy_hp > 0:
 
                 if hp > 0:
                     wood_sword_dmg = random.randint(10,15)
                     dragon_dmg = random.randint(4,6)
-                    dragon_hp = dragon_hp - wood_sword_dmg
+                    enemy_hp = enemy_hp - wood_sword_dmg
                     hp = hp - dragon_dmg
 
-                    print(f'[{Fore.GREEN}+{Fore.WHITE}] Dragon hit for {wood_sword_dmg}. Curren health: {healthbar(hp)} {Fore.RED}{dragon_hp}{Fore.WHITE}/200')
+                    print(f'[{Fore.GREEN}+{Fore.WHITE}] Dragon hit for {wood_sword_dmg}. Curren health: {healthbar_enemy(enemy_hp, enemy_total_hp)} {Fore.RED}{enemy_hp}{Fore.WHITE}/200')
+                    print(f'[{Fore.RED}-{Fore.WHITE}] You got hit for {dragon_dmg}. Curren health: {healthbar(hp)} {Fore.GREEN}{hp}{Fore.WHITE}/100\n')
                     time.sleep(0.4)
-                    print(f'\n[{Fore.RED}-{Fore.WHITE}] You got hit for {dragon_dmg}. Curren health: {healthbar(hp)} {Fore.GREEN}{hp}{Fore.WHITE}/100\n')
+                    clear()
                 
                 else:
                     died = True
@@ -63,6 +78,7 @@ def dragon_fight():
 
             if died:
                 print('You died! Maybe you could have prepared yourself better? ')
+                time.sleep(3)
                 #died()
             else:
                 print(f'\n[{Fore.GREEN}!{Fore.WHITE}] You have succesfully killed the dragon with {Fore.GREEN}{hp}{Fore.WHITE}/100 health left!')

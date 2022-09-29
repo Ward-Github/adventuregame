@@ -1,7 +1,12 @@
 Ward:
 
+Tijd:
 25/09 - 2 uur / Begin gemaakt aan de map en research gedaan over text based adventure games
 26/09 - 2 uur / Map meer uitgebreidt gemaakt
 27/09 - 5 uur / Gewerkt aan smallwoodhouse.py, tiles.py, ran_word.py, caves.py, upper_word_puzzle.py en begonnen aan alles te verwerken in main.py. Alles mooier gemaakt en kleur toegevoegd.
+28/09 - 3 uur / Gewerkt aan outside_cave.py, dragon_fight.py, healthbar gemaakt en code verbeterd main.py
 
 Wais:
+
+Commits:
+https://github.com/Ward-Github/adventuregame/commits/main
