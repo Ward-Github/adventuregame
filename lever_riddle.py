@@ -30,16 +30,16 @@ If you choose the correct lever you will be allowed to continue.
         print("Should have answered with yes or no, fool. You have died.")
         died()
 
-    answer = input("What is made of water, but when placed in water it will die?")
-    if answer == 'Snow':
+    answer = input("What is made of water, but when placed in water it will die (snow/grass/sand/fog):")
+    if answer == 'snow':
         print("Congratulations traveller, you are smart enough to continue on ur path. Best of luck.")
-    elif answer == 'Grass':
+    elif answer == 'grass':
         print("Unfortunately you are clearly not cut out for this. Im sorry but we must diminish ur existence.")
         died()
-    elif answer == 'Sand':
+    elif answer == 'sand':
         print("Unfortunately you are clearly not cut out for this. Im sorry but we must diminish ur existence.")
         died()
-    elif answer == 'Fog':
+    elif answer == 'fog':
         print("Unfortunately you are clearly not cut out for this. Im sorry but we must diminish ur existence.")
         died()
 
