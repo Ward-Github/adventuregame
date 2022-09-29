@@ -4,7 +4,7 @@ import random
 import os
 
 clear = lambda: os.system('cls')
-inventory = []
+inventory = ['wood sword']
 hp = 100
 
 def healthbar(hp):
@@ -48,19 +48,18 @@ def cave():
 
             died = False
             invalid = False
-            if 'wood sword' in inventory:
-                dmg = random.randint(5,10)
-            
-            else:
-                dmg = random.randint(1,3)
-
             enemy_hp = 133
             enemy_total_hp = 133
             print("\nYou walk in the cave and suddenly three skeletons pop out of nowhere. You'll have to fight.")
+            time.sleep(2)
 
             while enemy_hp > 0:
 
                 if hp > 0:
+                    if 'wood sword' in inventory:
+                        dmg = random.randint(5,10)
+                    else:
+                        dmg = random.randint(1,3)
                     skeleton_dmg = random.randint(2,4)
                     enemy_hp = enemy_hp - dmg
                     hp = hp - skeleton_dmg
