@@ -52,8 +52,9 @@ def dragon_fight():
                 print("You think fast and throw your bucket of water on him.")
 
                 enemy_hp = enemy_hp - 100
-                print(f"[{Fore.GREEN}+{Fore.WHITE}] -100 HP! His fire went away but he is still moving and angry.")
+                print(f"\n[{Fore.GREEN}+{Fore.WHITE}] {Fore.RED}-100{Fore.WHITE} HP! His fire went away but he is still moving and angry.")
                 print('You grab your sword and shield and start the fight')
+                time.sleep(6)
             
             else:
                 print('You grab your sword and shield and start the fight')
@@ -62,8 +63,8 @@ def dragon_fight():
             while enemy_hp > 0:
 
                 if hp > 0:
-                    wood_sword_dmg = random.randint(10,15)
-                    dragon_dmg = random.randint(4,6)
+                    wood_sword_dmg = random.randint(8,13)
+                    dragon_dmg = random.randint(3,5)
                     enemy_hp = enemy_hp - wood_sword_dmg
                     hp = hp - dragon_dmg
 
@@ -82,6 +83,24 @@ def dragon_fight():
                 #died()
             else:
                 print(f'\n[{Fore.GREEN}!{Fore.WHITE}] You have succesfully killed the dragon with {Fore.GREEN}{hp}{Fore.WHITE}/100 health left!')
+                print('')
+                time.sleep(1)
+                print(f'You look around and you see a dead body. You walk up to it and spot some climbing gear. + {Fore.MAGENTA}Climbing gear{Fore.WHITE}')
+                time.sleep(1)
+                inventory.append('climbing gear')
+                print('You walk back...')
+                for i in range(3):
+                    print('...')
+                    time.sleep(0.4)
+                print('You notice somebody with a large backpack standing on the path. You walk up to him and start a conversation')
+                time.sleep(2)
+                print('\nYou find out he is also lost on this mountain.')
+                time.sleep(2)
+                print(f'\nAfter a nice chat he decides to give you a {Fore.MAGENTA}healing spell{Fore.WHITE}!')
+                print(f'Your health gets completely restored + boosted. {Fore.GREEN}200{Fore.WHITE}/200 HP')
+                hp = 200
+                #outside_cave()
+
 
         elif dragon_choice == 'no':
             print('You walk back...')

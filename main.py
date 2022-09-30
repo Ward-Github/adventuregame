@@ -3,9 +3,28 @@ from colorama import Fore
 import os
 import time
 
-inventory = ['wood sword', 'water bucket']
+
+inventory = ['wood sword']
 hp = 100
 clear = lambda: os.system('cls')
+
+def healthbar_lategame(hp):
+    health = hp // 10
+    removed_health = (20 - health)
+    health_bar = f'|{Fore.GREEN}'
+
+    for i in range(health):
+        health_bar += f'x'
+    for i in range(removed_health):
+        health_bar += f'{Fore.RED}x'
+
+    health_bar += f'{Fore.WHITE}|'
+    return health_bar
+
+def inventory_show():
+    print('Inventory:')
+    for i in range((len(inventory))):
+        print(inventory[i])
 
 def died():
     clear()
@@ -30,7 +49,7 @@ Nothing Good Ever Comes Of Violence.
         if code == real_code:
             clear()
             print('\nThe chest has opened! You have received a sword')
-            inventory.append('wood_sword')
+            inventory.append('wood sword')
             print(f'\nYou walk back to the beginning to where you woke up with your brand new {Fore.LIGHTMAGENTA_EX}sword{Fore.WHITE}!')
             begin()
 
@@ -80,42 +99,56 @@ On your left side there is a cave, Follow the path over the bridge to the cave.
 
 def cave():
     global hp
+    global inventory
     
     print("You walk towards the cave. It's very dark, but you think you can see some movement.")
 
     invalid = True
     while invalid:
 
-        decision = input(f'\n[{Fore.YELLOW}!{Fore.WHITE}]Do you want to continue (yes/no): ')
+        decision = input(f'\n[{Fore.YELLOW}!{Fore.WHITE}] Do you want to continue (yes/no): ')
 
         if decision == 'yes':
 
-            if 'wood sword' in inventory:
-                enemy_hp = 133
-                print("\nYou walk in the cave and suddenly three skeletons pop out of nowhere. You'll have to fight.")
+            died = False
+            invalid = False
+            enemy_hp = 133
+            enemy_total_hp = 133
+            print("\nYou walk in the cave and suddenly three skeletons pop out of nowhere. You'll have to fight.")
+            time.sleep(2)
+            clear()
 
-                while enemy_hp > 0:
+            while enemy_hp > 0:
 
-                    wood_sword_dmg = random.randint(5,10)
+                if hp > 0:
+                    if 'wood sword' in inventory:
+                        dmg = random.randint(5,10)
+                    else:
+                        dmg = random.randint(1,3)
                     skeleton_dmg = random.randint(2,4)
-                    enemy_hp = enemy_hp - wood_sword_dmg
+                    enemy_hp = enemy_hp - dmg
                     hp = hp - skeleton_dmg
 
-                    print(f'[{Fore.GREEN}+{Fore.WHITE}] Skeleton hit for {wood_sword_dmg}')
-                    time.sleep(0.2)
-                    print(f'[{Fore.RED}-{Fore.WHITE}] You got hit for {skeleton_dmg}')
+                    print(f'[{Fore.MAGENTA}!{Fore.WHITE}] Current equipped loadout: {Fore.MAGENTA}Wooden Sword {Fore.WHITE}(5,10) DMG\n')
+                    print(f'[{Fore.GREEN}+{Fore.WHITE}] Skeletons hit for {dmg}. Curren health: {healthbar_enemy(enemy_hp, enemy_total_hp)} {Fore.RED}{enemy_hp}{Fore.WHITE}/{enemy_total_hp}')
+                    print(f'[{Fore.RED}-{Fore.WHITE}] You got hit for {skeleton_dmg}. Curren health: {healthbar(hp)} {Fore.GREEN}{hp}{Fore.WHITE}/100\n')
+                    time.sleep(0.4)
+                    clear()
+                
+                else:
+                    died = True
+                    break
 
-                print(f'\n[{Fore.GREEN}!{Fore.WHITE}] You have succesfully killed the skeletons with {Fore.GREEN}{hp}{Fore.WHITE} health left!')
-                time.sleep(0.2)
-                print(f'\n[{Fore.GREEN}!{Fore.WHITE}] One of the skeletons had a {Fore.LIGHTMAGENTA_EX}shield{Fore.WHITE} on him. You grab it and put in your bag. ')
-                time.sleep(1)
-                invalid = False
-                outside_cave()
             
-            else:
-                print("You died. You fought hard, but you didn't have any weapons.")
-                time.sleep(2)
+            if died:
+                print('You died! Maybe you could have prepared yourself better? ')
+                print(inventory)
+                time.sleep(3)
                 died()
+            else:
+                print(f'[{Fore.MAGENTA}!{Fore.WHITE}] One of the skeletons had a wooden shield on him. You grab it. +{Fore.MAGENTA} Wood Shield{Fore.WHITE}!')
+                inventory.append('wood shield')
+                outside_cave()
         
         elif decision == 'no':
             invalid = False
@@ -127,8 +160,6 @@ def cave():
 def outside_cave():
 
     print("""
-You finally made it out of the cave, thinking about what to do next.
-
 On your left you see a giant person. Higher than the biggest tree.
 On your right you see a regular mountain path.
 In front of you you see water well.
@@ -143,7 +174,7 @@ In front of you you see water well.
 
         elif decision == 'left':
             invalid = False
-            #giant_fight()
+            giant_fight()
         
         elif decision == 'ahead':
             print('Ff zodat geen error')
@@ -199,16 +230,18 @@ def dragon_fight():
                 enemy_hp = enemy_hp - 100
                 print(f"[{Fore.GREEN}+{Fore.WHITE}] -100 HP! His fire went away but he is still moving and angry.")
                 print('You grab your sword and shield and start the fight')
+                time.sleep(3)
             
             else:
                 print('You grab your sword and shield and start the fight')
+                time.sleep(3)
 
-            died = False
+            dead = False
             while enemy_hp > 0:
 
                 if hp > 0:
-                    wood_sword_dmg = random.randint(10,15)
-                    dragon_dmg = random.randint(4,6)
+                    wood_sword_dmg = random.randint(8,13)
+                    dragon_dmg = random.randint(3,5)
                     enemy_hp = enemy_hp - wood_sword_dmg
                     hp = hp - dragon_dmg
 
@@ -218,20 +251,180 @@ def dragon_fight():
                     clear()
                 
                 else:
-                    died = True
+                    dead = True
                     break
 
+            if dead:
+                print('You died! Maybe you could have prepared yourself better? ')
+                time.sleep(3)
+                died()
+            else:
+                print(f'\n[{Fore.GREEN}!{Fore.WHITE}] You have succesfully killed the dragon with {Fore.GREEN}{hp}{Fore.WHITE}/100 health left!')
+                print('')
+                print(f'You look around and you see a dead body. You walk up to it and spot some climbing gear. + {Fore.MAGENTA}Climbing gear{Fore.WHITE}')
+                print(f'You decide to walk back...')
+                time.sleep(1)
+                inventory.append('climbing gear')
+                outside_cave()
+
+        elif dragon_choice == 'no':
+            print('You walk back...')
+            invalid = False
+            outside_cave()
+        
+        else:
+            print('Invalid input, try again!')
+
+def giant_location():
+    print("""
+On your left you see a cliff
+Up ahead you see a wooden house
+    """)
+
+    decision = ''
+    while decision != 'left' and decision != 'ahead':
+        decision = input('Where would you like to go (left/ahead): ')
+        if decision == 'left':
+            print('ff geen error')
+            #cliff()
+        elif decision == 'ahead':
+            print('ff geen error')
+            #giant_house()
+        else:
+            print('Invalid input, try again!')
+
+def giant_fight():
+    global giant_hp
+    global giant_total_hp
+    global hp
+    global giant_beaten
+
+    print("""
+You think about what to do next...
+
+1. Use item on him
+2. Fight him
+3. Try to sneak past him
+4. Look around
+5. Go back
+    """)
+    decision = ''
+    #Bij deze keuzes moet hij niet opnieuw vragen.
+    while decision != '1' and decision != '2' and decision != '3' and decision != '5':
+        decision = input('What to do (1/2/3/4): ')
+
+        if decision == '1':
+            giant_itemmenu()
+        elif decision == '2':
+
+            died = False
+            print("\nYou walk up a cliff so that you around waist height of the giant.")
+            print("He notices you and the fight begins")
+            time.sleep(2)
+            clear()
+
+            while giant_hp > 0:
+
+                if hp > 0:
+
+                    #10 procent kans dat hij de aanval blockt
+                    blocked = False
+                    if random.randint(0,100) < 10:
+                        blocked = True
+                    else:
+                        blocked = False
+                        
+                    if 'metal sword' in inventory:
+                        dmg = random.randint(10,15)
+                    else:
+                        dmg = random.randint(5,10)
+                        giant_dmg = random.randint(4,6)
+
+                    if blocked:
+                        giant_hp = giant_hp - dmg
+                        print(f'[{Fore.GREEN}+{Fore.WHITE}] Giant hit for {dmg}. Curren health: {healthbar_enemy(giant_hp, giant_total_hp)} {Fore.RED}{giant_hp}{Fore.WHITE}/{giant_total_hp}')
+                        print(f'[{Fore.RED}-{Fore.WHITE}] You {Fore.GREEN}blocked{Fore.WHITE} the attack with your shield! Curren health: {healthbar_lategame(hp)} {Fore.GREEN}{hp}{Fore.WHITE}/200\n')
+                        time.sleep(0.4)
+                        clear()
+
+                    else:
+                        giant_hp = giant_hp - dmg
+                        hp = hp - giant_dmg
+
+                        print(f'[{Fore.GREEN}+{Fore.WHITE}] Giant hit for {dmg}. Curren health: {healthbar_enemy(giant_hp, giant_total_hp)} {Fore.RED}{giant_hp}{Fore.WHITE}/{giant_total_hp}')
+                        print(f'[{Fore.RED}-{Fore.WHITE}] You got hit for {giant_dmg}. Curren health: {healthbar_lategame(hp)} {Fore.GREEN}{hp}{Fore.WHITE}/200\n')
+                        time.sleep(0.4)
+                        clear()
+                
+                else:
+                    died = True
+                    break
+         
             if died:
                 print('You died! Maybe you could have prepared yourself better? ')
                 time.sleep(3)
                 #died()
             else:
-                print(f'\n[{Fore.GREEN}!{Fore.WHITE}] You have succesfully killed the dragon with {Fore.GREEN}{hp}{Fore.WHITE}/100 health left!')
+                print('After a long fight the giant is finally dead.\n')
+                print('You see ')
 
-        elif dragon_choice == 'no':
-            print('You walk back...')
-            break
-            #outside_cave()
+        elif decision == '3':
+            for i in range(3):
+                print('...')
+                time.sleep(0.4)
+            print('He steps on you with full force.')
+            time.sleep(3)
+            died()
+
+        elif decision == '4':
+            print('You decide to look around the area. You notice something reflecting the sun light.')
+            print(f'You walk close and its a metal sword! + {Fore.MAGENTA}metal sword{Fore.WHITE}')
+            inventory.append('metal sword')
+
+        elif decision == '5':
+            stop = True
+            outside_cave()
+
+        else:
+            print('Invalid input, try again')
+
+def giant_itemmenu():
+    global giant_hp
+    global giant_total_hp
+    inventory_show()
+    valid = False
+    print(f'To return to choices type {Fore.YELLOW}menu{Fore.WHITE}')
+    while not valid:
+            item_use = input('\nWhat item to use (ex. wooden shield): ')
+
+            if item_use == 'wooden shield':
+                print('You already have this item equipped. ')
+            
+            elif item_use == 'wooden sword':
+                print('You already have this item equipped. ')
+            
+            elif item_use == 'climbing gear':
+                print('You sneak up on the giant and start climbing on him.\nOnce you reach his head you grab your sword and stab both of his eyes')
+                print('He falls down in pain. You slide down his head and go back hiding in the bush')
+                print(f'{Fore.RED}-200{Fore.WHITE} HP of the Giant!')
+                giant_hp = giant_hp - 200
+                giant_total_hp = giant_total_hp - 200
+            
+            elif item_use == 'water_bucket':
+                print('You try to throw water on him.')
+                for i in range(3):
+                    print(...)
+                    time.sleep(0.4)
+                print('He steps on you with full force.')
+                time.sleep(3)
+                died()
+            
+            elif item_use == 'menu':
+                valid = True
+                giant_fight()
+            
+            else:
+                print('This is not a valid option...')
 
 print(f"""
 

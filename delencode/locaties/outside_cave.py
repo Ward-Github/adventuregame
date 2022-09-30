@@ -19,6 +19,10 @@ In front of you you see water well.
 
         elif decision == 'left':
             invalid = False
+            print("""
+You sneak up on the giant by crouching through the bushes.
+This seems like the only way to get up on the mountain.
+""")
             #giant_fight()
         
         elif decision == 'ahead':

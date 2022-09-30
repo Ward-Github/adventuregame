@@ -1,3 +1,5 @@
+from colorama import Fore
+
 inventory = []
 
 def upper_word_puzzle():
@@ -13,8 +15,8 @@ def upper_word_puzzle():
     while code != real_code:
         code = input('Code: ')
         if code == real_code:
-            print('The kist has opened! You have received a sword')
-            inventory.append('wood_sword')
+            print(f'The kist has opened! You have received a {Fore.MAGENTA}sword{Fore.WHITE}.')
+            inventory.append('wood sword')
         else:
             print('The code failed. Maybe something different will work? ')
 
