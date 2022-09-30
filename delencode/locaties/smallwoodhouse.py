@@ -2,32 +2,41 @@ from colorama import Fore
 
 inventory = []
 
+
 def upper_word_puzzle():
-    print("""
+    print(
+        """
     You see a note next to it with the following text:
 
     Nothing Good Ever Comes Of Violence.
-    """)
+    """
+    )
 
-    real_code = 'ngecov'
+    real_code = "ngecov"
 
     code = None
     while code != real_code:
-        code = input('Code: ')
+        code = input("Code: ")
         if code == real_code:
-            print(f'The kist has opened! You have received a {Fore.MAGENTA}sword{Fore.WHITE}.')
-            inventory.append('wood sword')
+            print(
+                f"The kist has opened! You have received a {Fore.MAGENTA}sword{Fore.WHITE}."
+            )
+            inventory.append("wood sword")
         else:
-            print('The code failed. Maybe something different will work? ')
+            print("The code failed. Maybe something different will work? ")
+
 
 def small_house():
-    print("""
+    print(
+        """
 You enter a small broken down home. It's very dusty and you can barely see. In the corner u spot an old chest with a lock on it
-    """)
-    choice = input('Do you want to try to open it or leave the home (open/leave): ')
-    if choice == 'open':
+    """
+    )
+    choice = input("Do you want to try to open it or leave the home (open/leave): ")
+    if choice == "open":
         upper_word_puzzle()
     else:
-        print('Leaved huis')
+        print("Leaved huis")
+
 
 small_house()

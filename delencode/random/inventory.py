@@ -1,8 +1,10 @@
-inventory = ['wood sword', 'wood shield']
+inventory = ["wood sword", "wood shield"]
+
 
 def inventory_show():
-    print('Inventory:')
+    print("Inventory:")
     for i in range((len(inventory))):
         print(inventory[i])
+
 
 inventory_show()

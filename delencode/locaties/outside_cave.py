@@ -1,35 +1,43 @@
 from colorama import Fore
 
+
 def outside_cave():
 
-    print("""
+    print(
+        """
 You finally made it out of the cave, thinking about what to do next.
 
 On your left you see a giant person. Higher than the biggest tree.
 On your right you see a regular mountain path.
 In front of you you see water well.
-    """)
+    """
+    )
 
     invalid = True
     while invalid:
-        decision = input(f'[{Fore.YELLOW}!{Fore.WHITE}] Where do you want to go (right/left/ahead): ')
-        if decision == 'right':
+        decision = input(
+            f"[{Fore.YELLOW}!{Fore.WHITE}] Where do you want to go (right/left/ahead): "
+        )
+        if decision == "right":
             invalid = False
-            #dragon_fight()
+            # dragon_fight()
 
-        elif decision == 'left':
+        elif decision == "left":
             invalid = False
-            print("""
+            print(
+                """
 You sneak up on the giant by crouching through the bushes.
 This seems like the only way to get up on the mountain.
-""")
-            #giant_fight()
-        
-        elif decision == 'ahead':
-            print('Ff zodat geen error')
-            #water_well()
-        
+"""
+            )
+            # giant_fight()
+
+        elif decision == "ahead":
+            print("Ff zodat geen error")
+            # water_well()
+
         else:
-            print('Invalid input, try again')
+            print("Invalid input, try again")
+
 
 outside_cave()
