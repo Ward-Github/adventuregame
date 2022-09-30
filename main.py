@@ -1,5 +1,5 @@
 import random
-from colorama import Fore, Back, Style, init
+from colorama import Fore
 import os
 import time
 

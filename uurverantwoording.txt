@@ -5,6 +5,7 @@ Tijd:
 26/09 - 2 uur / Map meer uitgebreidt gemaakt
 27/09 - 5 uur / Gewerkt aan smallwoodhouse.py, tiles.py, ran_word.py, caves.py, upper_word_puzzle.py en begonnen aan alles te verwerken in main.py. Alles mooier gemaakt en kleur toegevoegd.
 28/09 - 3 uur / Gewerkt aan outside_cave.py, dragon_fight.py, healthbar gemaakt en code verbeterd main.py
+29/09 - 3 uur / Gewerkt aan de skeleton fight in cave.py, de dragon fight verbeterd, healthbar beter gemaakt, inventory systeem gefixt zodat speler hun inventory kan bekijken
 
 Wais:
 

@@ -42,7 +42,7 @@ def cave():
     invalid = True
     while invalid:
 
-        decision = input(f'\n[{Fore.YELLOW}!{Fore.WHITE}]Do you want to continue (yes/no): ')
+        decision = input(f'\n[{Fore.YELLOW}!{Fore.WHITE}] Do you want to continue (yes/no): ')
 
         if decision == 'yes':
 
@@ -52,6 +52,7 @@ def cave():
             enemy_total_hp = 133
             print("\nYou walk in the cave and suddenly three skeletons pop out of nowhere. You'll have to fight.")
             time.sleep(2)
+            clear()
 
             while enemy_hp > 0:
 
