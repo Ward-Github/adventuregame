@@ -7,6 +7,7 @@ Tijd:
 28/09 - 3 uur / Gewerkt aan outside_cave.py, dragon_fight.py, healthbar gemaakt en code verbeterd main.py
 29/09 - 3 uur / Gewerkt aan de skeleton fight in cave.py, de dragon fight verbeterd, healthbar beter gemaakt, inventory systeem gefixt zodat speler hun inventory kan bekijken
 30/09 - 4 uur / Gewerkt aan giant fight, weer dragon/skeletons fight verbeterd en paar dingen gefixt.
+31/09 - 2 uur / Gewerkt aan mountain_climb.py, cliff.py en wat kleine dingen aangepast.
 
 Wais:
 

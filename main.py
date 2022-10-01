@@ -344,10 +344,10 @@ Up ahead you see a wooden house
         decision = input("Where would you like to go (left/ahead): ")
         if decision == "left":
             print("ff geen error")
-            # cliff()
+            cliff()
         elif decision == "ahead":
             print("ff geen error")
-            # giant_house()
+            mountain_climb()
         else:
             print("Invalid input, try again!")
 
@@ -505,6 +505,87 @@ def giant_itemmenu():
             print("This is not a valid option...")
 
 
+def tiles_puzzle():
+    text = f"""
+    In front of you there are 5 lines of tiles. The first row being 1, second 2 etc.
+    You will see a combination of numbers for 3 seconds. This is the order to know on what tile to step on.
+
+    |x x x x x|
+     1 2 3 4 5
+
+    {Fore.GREEN}Make sure to remember the combination!{Fore.WHITE}
+
+    Make a wrong choice and you will be shot by one of the many traps.
+    """
+
+    print(text)
+
+    input(f"[{Fore.YELLOW}!{Fore.WHITE}] Are you ready to start? (Press enter)")
+
+    clear = lambda: os.system("cls")
+    numbers = ["1", "2", "3", "4", "5"]
+    ran_num = random.choices(numbers, k=5)
+
+    clear()
+    print("\n" + "".join(ran_num))
+
+    time.sleep(3)
+
+    clear()
+    print(text)
+
+    i = 0
+    made_tiles = False
+    print("|x x x x x|")
+    for i in range(5):
+        decision = input("What row to step on (1,2,3,4,5): ")
+        if decision == ran_num[i]:
+            made_tiles = True
+        else:
+            made_tiles = False
+            break
+
+    if made_tiles:
+        print("You succesfully made it to the end.")
+    else:
+        print("You got shot by an trap! Sadly u died.")
+        # died()
+
+
+def mountain_climb():
+    print(
+        "You walk towards the the big walls. You see a entrance with very big doors.\nBehind the walls there is a big side of the mountain leiding to the snowy tops.\n"
+        "When u reach the entrance the doors automatically open up and you step inside."
+    )
+
+    decision = ""
+    while decision != "further" and decision != "back":
+        decision = input(
+            f"\n[{Fore.YELLOW}!{Fore.WHITE}] Do you want to go further or go back (further/back): "
+        )
+        if decision == "further":
+            tiles_puzzle()
+        elif decision == "back":
+            print("You try to walk back, but the doors instantly closes.")
+            tiles_puzzle()
+        else:
+            print("Invalid input, try again.")
+
+
+def cliff():
+    print("Up ahead you see a cliff with a beautifull view of the forest down below.")
+    time.sleep(1)
+    print("You look to your right and spot some armor laying on the ground.")
+    time.sleep(1)
+    print(
+        f"You decide to try it on and it fits perfectly! + {Fore.MAGENTA}armor{Fore.WHITE}!"
+    )
+    inventory.append["armor"]
+    print("There is not anything else to do here, so you walk back...")
+    time.sleep(2)
+    giant_location()
+
+
 print(
     f"""
 
@@ -537,4 +618,5 @@ This mountain has been terrorized by the Demi-human called Saradomin,
 It is your task to free us from his wrath."""
 )
 
-begin()
+if __name__ == "__main__":
+    begin()
