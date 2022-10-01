@@ -64,7 +64,7 @@ def giant_location():
     print(
         """
 On your left you see a cliff
-Up ahead you see a wooden house
+Up ahead you see very big walls. Behind it you see a very big mountain side leading to the snowy tops.
     """
     )
 
@@ -76,7 +76,7 @@ Up ahead you see a wooden house
             # cliff()
         elif decision == "ahead":
             print("ff geen error")
-            # giant_house()
+            # mountain_climb()
         else:
             print("Invalid input, try again!")
 
