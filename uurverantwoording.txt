@@ -11,5 +11,4 @@ Tijd:
 
 Wais:
 
-Commits:
-https://github.com/Ward-Github/adventuregame/commits/main
+Github: https://github.com/Ward-Github/adventuregame
