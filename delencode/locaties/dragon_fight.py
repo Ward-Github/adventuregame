@@ -37,6 +37,36 @@ def healthbar_enemy(enemy_hp, enemy_total_hp):
     return health_bar
 
 
+def ran_dice():
+    global hp
+    print(
+        "\nThe point of this game is that you have to guess if the dice will be higher or lower. So (1,2,3) or (4,5,6)"
+    )
+    print(
+        "You have 3 attempts. If you fail all attempts you will get the healing potion."
+    )
+    guessed = False
+    while not guessed:
+        ran_number = random.randint(1, 6)
+        choice = int(input("Guess higher or lower (higher/lower): "))
+        if ran_number > 3 and choice == "higher":
+            print("You guessed it!")
+            guessed = True
+            print(
+                f"Your health gets completely restored + boosted. {Fore.GREEN}200{Fore.WHITE}/200 HP"
+            )
+            hp = 200
+        elif ran_number < 4 and choice == "lower":
+            print("You guessed it!")
+            guessed = True
+            print(
+                f"Your health gets completely restored + boosted. {Fore.GREEN}200{Fore.WHITE}/200 HP"
+            )
+            hp = 200
+        else:
+            print("You failed try again.")
+
+
 def dragon_fight():
     global hp
 
@@ -111,10 +141,11 @@ def dragon_fight():
                 )
                 time.sleep(2)
                 print("\nYou find out he is also lost on this mountain.")
-                time.sleep(2)
                 print(
-                    f"\nAfter a nice chat he decides to give you a {Fore.MAGENTA}healing spell{Fore.WHITE}!"
+                    f"He challenges you to a simple game in order to get a {Fore.MAGENTA}healing spell{Fore.WHITE}!"
                 )
+                ran_dice()
+                time.sleep(2)
                 print(
                     f"Your health gets completely restored + boosted. {Fore.GREEN}200{Fore.WHITE}/200 HP"
                 )
