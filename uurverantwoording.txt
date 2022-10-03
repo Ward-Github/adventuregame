@@ -10,5 +10,14 @@ Tijd:
 31/09 - 2 uur / Gewerkt aan mountain_climb.py, cliff.py en wat kleine dingen aangepast.
 
 Wais:
+25/09 - 3 uur / Begin gemaakt aan de map en research gedaan over text based adventure games
+26/09 - 3 uur / Map meer uitgebreidt gemaakt / verhaal bedacht / storyline geschreven
+27/09 - 4 uur / Beginning.py gemaakt + research over storyline en nieuwe python methodes leren.
+28/09 - 4 uur / Lever_riddle.py gemaakt, veel problemen opgelopen met de puzzle en uiteindelijk door middel van hulp van Ward en mijn broer achter gekomen hoe ik deze functie correct kan uitvoeren.
+29/09 - 5 uur / research over Adventure games op thecoderpedia, 2 films gekeken, 3 adventure games helemaal uitgespeeld en source code bekeken. 
+30/09 - 4 uur / Well locatie gemaakt, Giant fight code herbekeken en stukjes opnieuw geschreven, uitleg van Ward over healthbar gekregen en geimplementeerd / mountain_climb.py cliff.py
+01/10 - 2 uur / cave.py bijgewerkt inventory systeem kloppend gemaakt
+02/10 - 2 uur / Test runs main.py. Errors uitgewerkt en opnieuw gerund.
+03/10 - 3 uur / laatste dag Main.py netjes gemaakt. Boss fight herkeken en weer bewerkt, laten testrunnen door een 3rd person. 
 
 Github: https://github.com/Ward-Github/adventuregame

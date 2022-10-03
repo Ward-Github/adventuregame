@@ -397,7 +397,7 @@ You think about what to do next...
     decision = ""
     # Bij deze keuzes moet hij niet opnieuw vragen.
     while decision != "1" and decision != "2" and decision != "3" and decision != "5":
-        decision = input("What to do (1/2/3/4): ")
+        decision = input("What to do (1/2/3/4/5): ")
 
         if decision == "1":
             giant_itemmenu()
@@ -644,8 +644,12 @@ If you choose the correct lever you will be allowed to continue.
     )
     if answer == "snow":
         print(
-            "Congratulations traveller, you are smart enough to continue on ur path. Best of luck."
+            """Congratulations traveller, you are smart enough to continue on ur path. Best of luck.
+            You have received a water bucket to take along on ur path."""
         )
+        inventory.append["water bucket"]
+        time.sleep(3)
+        outside_cave()
     elif answer == "grass":
         print(
             "Unfortunately you are clearly not cut out for this. Im sorry but we must diminish ur existence."
@@ -678,6 +682,7 @@ def water_well():
 
     print(
         f"""
+
 
   ██████  ▄▄▄       ██▀███   ▄▄▄      ▓█████▄  ▒█████   ███▄ ▄███▓ ██▓ ███▄    █ 
 ▒██    ▒ ▒████▄    ▓██ ▒ ██▒▒████▄    ▒██▀ ██▌▒██▒  ██▒▓██▒▀█▀ ██▒▓██▒ ██ ▀█   █ 
