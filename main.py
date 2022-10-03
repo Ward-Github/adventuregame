@@ -3,11 +3,32 @@ import random
 from colorama import Fore
 import os
 import time
-
+import keyboard
 
 inventory = []
 hp = 100
 clear = lambda: os.system("cls")
+
+
+def ran_dice():
+    print(
+        "The point of this game is that you have to guess if the dice will be higher or lower. So (1,2,3) or (4,5,6)"
+    )
+    print(
+        "You have 3 attempts. If you fail all attempts you will get the healing potion."
+    )
+    guessed = False
+    while not guessed:
+        ran_number = random.randint(1, 6)
+        choice = int(input("Guess higher or lower (higher/lower): "))
+        if ran_number > 3 and choice == "higher":
+            print("You guessed it!")
+            guessed = True
+        elif ran_number < 4 and choice == "lower":
+            print("You guessed it!")
+            guessed = True
+        else:
+            print("You failed try again.")
 
 
 def ran_woord_puzzle():
@@ -318,6 +339,10 @@ def dragon_fight():
                     hp = hp - dragon_dmg
 
                     print(
+                        f"[{Fore.MAGENTA}!{Fore.WHITE}] Current equipped loadout: {Fore.MAGENTA}Wooden Sword {Fore.WHITE}(5,10) DMG\n"
+                    )
+
+                    print(
                         f"[{Fore.GREEN}+{Fore.WHITE}] Dragon hit for {wood_sword_dmg}. Curren health: {healthbar_enemy(enemy_hp, enemy_total_hp)} {Fore.RED}{enemy_hp}{Fore.WHITE}/200"
                     )
                     print(
@@ -342,9 +367,25 @@ def dragon_fight():
                 print(
                     f"You look around and you see a dead body. You walk up to it and spot some climbing gear. + {Fore.MAGENTA}Climbing gear{Fore.WHITE}"
                 )
-                print(f"You decide to walk back...")
-                time.sleep(1)
                 inventory.append("climbing gear")
+                print("You walk back...")
+                for i in range(3):
+                    print("...")
+                    time.sleep(0.4)
+                print(
+                    "You notice somebody with a large backpack standing on the path. You walk up to him and start a conversation"
+                )
+                time.sleep(2)
+                print("\nYou find out he is also lost on this mountain.")
+                print(
+                    f"He challenges you to a simple game in order to get a {Fore.MAGENTA}healing spell{Fore.WHITE}!"
+                )
+                ran_dice()
+                time.sleep(2)
+                print(
+                    f"Your health gets completely restored + boosted. {Fore.GREEN}200{Fore.WHITE}/200 HP"
+                )
+                hp = 200
                 outside_cave()
 
         elif dragon_choice == "no":
@@ -368,10 +409,8 @@ Up ahead you see a wooden house
     while decision != "left" and decision != "ahead":
         decision = input("Where would you like to go (left/ahead): ")
         if decision == "left":
-            print("ff geen error")
             cliff()
         elif decision == "ahead":
-            print("ff geen error")
             mountain_climb()
         else:
             print("Invalid input, try again!")
@@ -676,8 +715,81 @@ def water_well():
     else:
         print("You choose to go back.")
 
+
+leopard_hp = 400
+leopard_total_hp = 400
+
+
+def last_boss_fight():
+    global hp
+    global leopard_hp
+    global leopard_total_hp
+
+    hp = 200
+    leopard_hp = 400
+    leopard_total_hp = 400
+
+    print("You reach the top of the mountain. It's snowing very hard.")
+    good_key = False
+    ran_keys = ["q", "w", "e", "a", "s", "d"]
     print(
-        f"""
+        "Info small mini game: You'll see a letter coming up. You need to press this key as fast as possible."
+    )
+    input("Are you ready? (Press enter)")
+    dmg = 0
+    leopard_dmg = 0
+    while leopard_hp > 0:
+        print(
+            f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}] Press the given letter as fast as possible to do damage!"
+        )
+        print("")
+        print(
+            f"{Fore.WHITE}[{Fore.MAGENTA}!{Fore.WHITE}] Current equipped loadout: {Fore.MAGENTA}Metal Sword {Fore.WHITE}(10,15) DMG\n"
+        )
+        print(
+            f"[{Fore.GREEN}+{Fore.WHITE}] Snow leopard! hit for {dmg}. Curren health: {healthbar_enemy(leopard_hp, leopard_total_hp)} {Fore.RED}{leopard_hp}{Fore.WHITE}/{leopard_total_hp}"
+        )
+        print(
+            f"[{Fore.RED}-{Fore.WHITE}] You got hit for {leopard_dmg}. Curren health: {healthbar_lategame(hp)} {Fore.GREEN}{hp}{Fore.WHITE}/200\n"
+        )
+        if hp > 0:
+            time.sleep(0.1)
+            good_key = False
+            ran_key = random.choice(ran_keys)
+            print(f"{Fore.WHITE}Key to press: {Fore.YELLOW}" + ran_key)
+            start_time = time.time()
+            if keyboard.read_key() == ran_key:
+                good_key = True
+            else:
+                good_key = False
+
+            time_key = time.time() - start_time
+
+            leopard_dmg = random.randint(4, 6)
+            if good_key and time_key < 1.2:
+                dmg = random.randint(10, 15)
+            else:
+                dmg = 0
+            leopard_hp = leopard_hp - dmg
+            hp = hp - leopard_dmg
+            clear()
+
+        else:
+            print("You died!")
+            break
+
+    if leopard_hp < 0:
+        print("You succesfully beaten the snow leopard!")
+        time.sleep(3)
+        clear()
+        print("You have beaten the game!")
+    else:
+        input("Press enter to try again")
+        last_boss_fight()
+
+
+print(
+    f"""
 
   ██████  ▄▄▄       ██▀███   ▄▄▄      ▓█████▄  ▒█████   ███▄ ▄███▓ ██▓ ███▄    █ 
 ▒██    ▒ ▒████▄    ▓██ ▒ ██▒▒████▄    ▒██▀ ██▌▒██▒  ██▒▓██▒▀█▀ ██▒▓██▒ ██ ▀█   █ 
@@ -693,7 +805,7 @@ def water_well():
 [{Fore.YELLOW}!{Fore.WHITE}] Welcome to Saradomin
 
 """
-    )
+)
 
 
 input(
