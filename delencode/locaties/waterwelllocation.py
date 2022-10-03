@@ -1,7 +1,7 @@
-from macpath import realpath
 import os
 
 clear = lambda: os.system("cls")
+
 
 def died():
     clear()
@@ -62,23 +62,16 @@ If you choose the correct lever you will be allowed to continue.
         died()
 
 
-lever_riddle()
-
-
-
-
-
 def story():
-    print("""You have completed the previous puzzle and are now on ur way on the dirty old crusty path.
+    print(
+        """You have completed the previous puzzle and are now on ur way on the dirty old crusty path.
     You see something in the distance.
-    """)
+    """
+    )
+
 
 choice = input("Do you choose to approach the mysterious figure? (yes/no)")
-if choice == 'yes':
+if choice == "yes":
     lever_riddle()
 else:
     print("You choose to go back.")
-
-
-
-
