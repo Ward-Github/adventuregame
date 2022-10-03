@@ -1,12 +1,38 @@
+from cgitb import small
 import random
 from colorama import Fore
 import os
 import time
 
 
-inventory = ["wood sword"]
+inventory = []
 hp = 100
 clear = lambda: os.system("cls")
+
+
+def ran_woord_puzzle():
+    print(
+        """
+    In front of you there is a keypad with a note next to it. On the notepad you see some letters.
+    You can probably do something with them to make a working code...
+    """
+    )
+
+    words = ["tree", "sun", "ball", "moon", "earth", "grass", "world"]
+    woord = random.choice(words)
+    woord_list = list(woord)
+    random.shuffle(woord_list)
+    final_word = " ".join(woord_list)
+    print(final_word)
+
+    code = None
+    while code != woord:
+        code = input("Code for the door: ")
+        if code == woord:
+            print("The door has opened!")
+            small_house()
+        else:
+            print("The code failed. Maybe something different will work? ")
 
 
 def healthbar_lategame(hp):
@@ -114,7 +140,7 @@ On your left side there is a cave, Follow the path over the bridge to the cave.
             print("\nYou have chosen the path through the woods to the small house.")
             invalid = False
             clear()
-            small_house()
+            ran_woord_puzzle()
 
         else:
             print("invalid choice.")
@@ -218,8 +244,7 @@ In front of you you see water well.
             giant_fight()
 
         elif decision == "ahead":
-            print("Ff zodat geen error")
-            # water_well()
+            water_well()
 
         else:
             print("Invalid input, try again")
@@ -586,6 +611,72 @@ def cliff():
     giant_location()
 
 
+def lever_riddle():
+    print(
+        """ Welcome traveller. 
+To continue on this path you have to choose the wall with the correct lever.
+Each wall has its own name.
+Snow
+Grass
+Sand
+Fog
+If you choose the incorrect lever you will be met with the fate of death.
+If you choose the correct lever you will be allowed to continue.
+    """
+    )
+
+    fate = input("Do you wish to continue (yes/no): ")
+    if fate == "no":
+        print("There is no returning back once you started, You have died.")
+        died()
+    elif fate == "yes":
+        print(
+            """Very well, To learn the name of the correct wall you must solve this clue.
+    This answer to this clue is the name of the correct wall, and will guide you to the right direction.
+    """
+        )
+    else:
+        print("Should have answered with yes or no, fool. You have died.")
+        died()
+
+    answer = input(
+        "What is made of water, but when placed in water it will die (snow/grass/sand/fog):"
+    )
+    if answer == "snow":
+        print(
+            "Congratulations traveller, you are smart enough to continue on ur path. Best of luck."
+        )
+    elif answer == "grass":
+        print(
+            "Unfortunately you are clearly not cut out for this. Im sorry but we must diminish ur existence."
+        )
+        died()
+    elif answer == "sand":
+        print(
+            "Unfortunately you are clearly not cut out for this. Im sorry but we must diminish ur existence."
+        )
+        died()
+    elif answer == "fog":
+        print(
+            "Unfortunately you are clearly not cut out for this. Im sorry but we must diminish ur existence."
+        )
+        died()
+
+
+def water_well():
+    print(
+        """You have completed the previous puzzle and are now on ur way on the dirty old crusty path.
+    You see something in the distance.
+    """
+    )
+
+
+choice = input("Do you choose to approach the mysterious figure? (yes/no)")
+if choice == "yes":
+    lever_riddle()
+else:
+    print("You choose to go back.")
+
 print(
     f"""
 
@@ -614,7 +705,7 @@ print(
     """
 You’ve awakened traveller,
 welcome to mountain Karamja. 
-This mountain has been terrorized by the Demi-human called Saradomin,
+This mountain has been terrorized by the Snow leopard called Saradomin,
 It is your task to free us from his wrath."""
 )
 

@@ -35,7 +35,6 @@ def tiles_puzzle():
 
     i = 0
     made_tiles = False
-    print("|x x x x x|")
     for i in range(5):
         decision = input("What row to step on (1,2,3,4,5): ")
         if decision == ran_num[i]:
@@ -45,7 +44,14 @@ def tiles_puzzle():
             break
 
     if made_tiles:
-        print("You succesfully made it to the end.")
+        print(
+            """
+You succesfully made it to the end!
+Suddenly a guy walks up to you. He says that he sees you are about to take on the snow leopard.
+To help you beat him he decides to give you his iron shield and wishes you the best of luck.
+After that you grab your climbing gear and start climbing to the top of the mountain... """
+        )
+        # last_fight
     else:
         print("You got shot by an trap! Sadly u died.")
         # died()
