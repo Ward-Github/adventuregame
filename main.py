@@ -670,15 +670,14 @@ def water_well():
     """
     )
 
+    choice = input("Do you choose to approach the mysterious figure? (yes/no)")
+    if choice == "yes":
+        lever_riddle()
+    else:
+        print("You choose to go back.")
 
-choice = input("Do you choose to approach the mysterious figure? (yes/no)")
-if choice == "yes":
-    lever_riddle()
-else:
-    print("You choose to go back.")
-
-print(
-    f"""
+    print(
+        f"""
 
   ██████  ▄▄▄       ██▀███   ▄▄▄      ▓█████▄  ▒█████   ███▄ ▄███▓ ██▓ ███▄    █ 
 ▒██    ▒ ▒████▄    ▓██ ▒ ██▒▒████▄    ▒██▀ ██▌▒██▒  ██▒▓██▒▀█▀ ██▒▓██▒ ██ ▀█   █ 
@@ -694,7 +693,9 @@ print(
 [{Fore.YELLOW}!{Fore.WHITE}] Welcome to Saradomin
 
 """
-)
+    )
+
+
 input(
     f"[{Fore.YELLOW}/{Fore.WHITE}] Press enter to start... (If you can't see colors make sure to update your terminal"
 )
