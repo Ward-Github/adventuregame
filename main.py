@@ -1,4 +1,3 @@
-from cgitb import small
 import random
 from colorama import Fore
 import os
@@ -8,6 +7,9 @@ import keyboard
 inventory = []
 hp = 100
 clear = lambda: os.system("cls")
+giant_hp = 500
+giant_total_hp = 500
+giant_beaten = False
 
 
 def ran_dice():
@@ -20,7 +22,7 @@ def ran_dice():
     guessed = False
     while not guessed:
         ran_number = random.randint(1, 6)
-        choice = int(input("Guess higher or lower (higher/lower): "))
+        choice = input("Guess higher or lower (higher/lower): ")
         if ran_number > 3 and choice == "higher":
             print("You guessed it!")
             guessed = True
@@ -136,7 +138,10 @@ You enter a small broken down home. It's very dusty and you can barely see. In t
 
 
 def begin():
+    global inventory
+    global hp
 
+    hp = 100
     print(
         """
 On your right side there is a small house, Follow the path through the woods and you will find it.
@@ -334,7 +339,7 @@ def dragon_fight():
 
                 if hp > 0:
                     wood_sword_dmg = random.randint(8, 13)
-                    dragon_dmg = random.randint(3, 5)
+                    dragon_dmg = random.randint(2, 4)
                     enemy_hp = enemy_hp - wood_sword_dmg
                     hp = hp - dragon_dmg
 
@@ -363,6 +368,7 @@ def dragon_fight():
                 print(
                     f"\n[{Fore.GREEN}!{Fore.WHITE}] You have succesfully killed the dragon with {Fore.GREEN}{hp}{Fore.WHITE}/100 health left!"
                 )
+                time.sleep(2)
                 print("")
                 print(
                     f"You look around and you see a dead body. You walk up to it and spot some climbing gear. + {Fore.MAGENTA}Climbing gear{Fore.WHITE}"
@@ -385,7 +391,6 @@ def dragon_fight():
                 print(
                     f"Your health gets completely restored + boosted. {Fore.GREEN}200{Fore.WHITE}/200 HP"
                 )
-                hp = 200
                 outside_cave()
 
         elif dragon_choice == "no":
@@ -421,6 +426,8 @@ def giant_fight():
     global giant_total_hp
     global hp
     global giant_beaten
+
+    hp = 200
 
     print(
         """
@@ -461,6 +468,7 @@ You think about what to do next...
 
                     if "metal sword" in inventory:
                         dmg = random.randint(10, 15)
+                        giant_dmg = random.randint(4, 6)
                     else:
                         dmg = random.randint(5, 10)
                         giant_dmg = random.randint(4, 6)
@@ -496,10 +504,11 @@ You think about what to do next...
             if died:
                 print("You died! Maybe you could have prepared yourself better? ")
                 time.sleep(3)
-                # died()
+                died()
             else:
                 print("After a long fight the giant is finally dead.\n")
-                print("You see ")
+                print("You see some very big walls up ahead.")
+                mountain_climb()
 
         elif decision == "3":
             for i in range(3):
@@ -611,9 +620,10 @@ def tiles_puzzle():
 
     if made_tiles:
         print("You succesfully made it to the end.")
+        last_boss_fight()
     else:
         print("You got shot by an trap! Sadly u died.")
-        # died()
+        died()
 
 
 def mountain_climb():
@@ -652,26 +662,27 @@ def cliff():
 
 def lever_riddle():
     print(
-        """ Welcome traveller. 
+        """\nWelcome traveller.
 To continue on this path you have to choose the wall with the correct lever.
 Each wall has its own name.
+
 Snow
 Grass
 Sand
 Fog
+
 If you choose the incorrect lever you will be met with the fate of death.
-If you choose the correct lever you will be allowed to continue.
-    """
+If you choose the correct lever you will be allowed to continue.\n"""
     )
 
-    fate = input("Do you wish to continue (yes/no): ")
+    fate = input(f"[{Fore.YELLOW}!{Fore.WHITE}] Do you wish to continue (yes/no): ")
     if fate == "no":
         print("There is no returning back once you started, You have died.")
         died()
     elif fate == "yes":
         print(
             """Very well, To learn the name of the correct wall you must solve this clue.
-    This answer to this clue is the name of the correct wall, and will guide you to the right direction.
+This answer to this clue is the name of the correct wall, and will guide you to the right direction.
     """
         )
     else:
@@ -679,14 +690,14 @@ If you choose the correct lever you will be allowed to continue.
         died()
 
     answer = input(
-        "What is made of water, but when placed in water it will die (snow/grass/sand/fog):"
+        "What is made of water, but when placed in water it will die (snow/grass/sand/fog): "
     )
     if answer == "snow":
         print(
-            """Congratulations traveller, you are smart enough to continue on ur path. Best of luck.
-            You have received a water bucket to take along on ur path."""
+            f"""Congratulations traveller, you are smart enough to continue on ur path. Best of luck.
+You have received a {Fore.MAGENTA}water bucket{Fore.WHITE} to take along on ur path."""
         )
-        inventory.append["water bucket"]
+        inventory.append("water bucket")
         time.sleep(3)
         outside_cave()
     elif answer == "grass":
@@ -708,12 +719,13 @@ If you choose the correct lever you will be allowed to continue.
 
 def water_well():
     print(
-        """You have completed the previous puzzle and are now on ur way on the dirty old crusty path.
-    You see something in the distance.
-    """
+        """\nYou have completed the previous puzzle and are now on ur way on the dirty old crusty path.
+You see something in the distance.\n"""
     )
 
-    choice = input("Do you choose to approach the mysterious figure? (yes/no)")
+    choice = input(
+        f"[{Fore.YELLOW}!{Fore.WHITE}] Do you choose to approach the mysterious figure(yes/no): "
+    )
     if choice == "yes":
         lever_riddle()
     else:
@@ -729,15 +741,21 @@ def last_boss_fight():
     global leopard_hp
     global leopard_total_hp
 
-    hp = 200
+    hp = 250
     leopard_hp = 400
     leopard_total_hp = 400
 
     print("You reach the top of the mountain. It's snowing very hard.")
+    print(
+        "The snow leopard spots you. He comes to you and tries to attack. You dodge and the fight begins!"
+    )
     good_key = False
     ran_keys = ["q", "w", "e", "a", "s", "d"]
     print(
-        "Info small mini game: You'll see a letter coming up. You need to press this key as fast as possible."
+        "\nInfo small mini game: You'll see a letter coming up. You need to press this key as fast as possible."
+    )
+    print(
+        f"For this last boss fight your health got boosted to 250! {Fore.GREEN}250{Fore.WHITE}/250 HP"
     )
     input("Are you ready? (Press enter)")
     dmg = 0
